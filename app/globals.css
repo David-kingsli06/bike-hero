@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --font-display: var(--font-anton), sans-serif;
+  --font-body: var(--font-inter), sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* ── Rider Pop-Up & Float Animation ── */
+/* Ultra-smooth Apple-grade spring easing curve */
+@keyframes popUpFromBelow {
+  0% {
+    transform: translate3d(0, 100%, 0) scale(0.9);
+    opacity: 0;
+    filter: blur(8px);
+  }
+  30% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  75% {
+    transform: translate3d(0, -10px, 0) scale(1.015);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+/* Subtle breathing floating motion after popping up */
+@keyframes idleFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -6px, 0);
+  }
+}
+
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0) scale(0.96);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+.animate-pop-up {
+  animation: 
+    popUpFromBelow 1.6s cubic-bezier(0.19, 1, 0.22, 1) forwards,
+    idleFloat 6s ease-in-out 1.6s infinite;
+  will-change: transform, opacity;
+  transform-origin: bottom center;
+  backface-visibility: hidden;
+}
+
+.animate-text-reveal {
+  animation: textReveal 1.4s cubic-bezier(0.19, 1, 0.22, 1) 0.15s both;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
